@@ -4,11 +4,10 @@ using RestWithAspNetTutorial.Services.Implementations;
 
 namespace RestWithAspNetTutorial.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
+    [ApiVersion("1")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     public class PersonsController : ControllerBase
     {
-
         private IPersonService _personService;
         
         public PersonsController(IPersonService personService) 
