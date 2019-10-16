@@ -6,7 +6,6 @@ C:\Users\Andressa\Desktop\RestApi\RestWithAspNetTutorial\RestWithAspNetTutorial\
 C:\Users\Andressa\Desktop\RestApi\RestWithAspNetTutorial\RestWithAspNetTutorial\RestWithAspNetTutorial\bin\Debug\netcoreapp2.1\RestWithAspNetTutorial.runtimeconfig.dev.json
 C:\Users\Andressa\Desktop\RestApi\RestWithAspNetTutorial\RestWithAspNetTutorial\RestWithAspNetTutorial\bin\Debug\netcoreapp2.1\RestWithAspNetTutorial.dll
 C:\Users\Andressa\Desktop\RestApi\RestWithAspNetTutorial\RestWithAspNetTutorial\RestWithAspNetTutorial\bin\Debug\netcoreapp2.1\RestWithAspNetTutorial.pdb
-C:\Users\Andressa\Desktop\RestApi\RestWithAspNetTutorial\RestWithAspNetTutorial\RestWithAspNetTutorial\obj\Debug\netcoreapp2.1\RestWithAspNetTutorial.csprojAssemblyReference.cache
 C:\Users\Andressa\Desktop\RestApi\RestWithAspNetTutorial\RestWithAspNetTutorial\RestWithAspNetTutorial\obj\Debug\netcoreapp2.1\RestWithAspNetTutorial.RazorAssemblyInfo.cache
 C:\Users\Andressa\Desktop\RestApi\RestWithAspNetTutorial\RestWithAspNetTutorial\RestWithAspNetTutorial\obj\Debug\netcoreapp2.1\RestWithAspNetTutorial.RazorAssemblyInfo.cs
 C:\Users\Andressa\Desktop\RestApi\RestWithAspNetTutorial\RestWithAspNetTutorial\RestWithAspNetTutorial\obj\Debug\netcoreapp2.1\RestWithAspNetTutorial.AssemblyInfoInputs.cache
@@ -14,3 +13,5 @@ C:\Users\Andressa\Desktop\RestApi\RestWithAspNetTutorial\RestWithAspNetTutorial\
 C:\Users\Andressa\Desktop\RestApi\RestWithAspNetTutorial\RestWithAspNetTutorial\RestWithAspNetTutorial\obj\Debug\netcoreapp2.1\RestWithAspNetTutorial.RazorTargetAssemblyInfo.cache
 C:\Users\Andressa\Desktop\RestApi\RestWithAspNetTutorial\RestWithAspNetTutorial\RestWithAspNetTutorial\obj\Debug\netcoreapp2.1\RestWithAspNetTutorial.dll
 C:\Users\Andressa\Desktop\RestApi\RestWithAspNetTutorial\RestWithAspNetTutorial\RestWithAspNetTutorial\obj\Debug\netcoreapp2.1\RestWithAspNetTutorial.pdb
+C:\Users\Andressa\Desktop\RestApi\RestWithAspNetTutorial\RestWithAspNetTutorial\RestWithAspNetTutorial\obj\Debug\netcoreapp2.1\RestWithAspNetTutorial.csprojAssemblyReference.cache
+C:\Users\Andressa\Desktop\RestApi\RestWithAspNetTutorial\RestWithAspNetTutorial\RestWithAspNetTutorial\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
