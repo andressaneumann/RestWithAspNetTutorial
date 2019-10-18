@@ -16,6 +16,8 @@ using RestWithAspNetTutorial.Business.Implementations;
 using RestWithAspNetTutorial.Business;
 using RestWithAspNetTutorial.Repository;
 using RestWithAspNetTutorial.Repository.Implementations;
+using Pomelo.EntityFrameworkCore.MySql;
+using RestWithAspNetTutorial.Repository.Generic;
 
 namespace RestWithAspNetTutorial
 {
@@ -65,6 +67,9 @@ namespace RestWithAspNetTutorial
             //Dependency Injection
             services.AddScoped<IPersonBusiness, PersonBusiness>();
             services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<IBookBusiness, BookBusiness>();          
+
+            services.AddScoped(typeof(IRepository<>), typeof(GenericRepository<>));
 
         }
 

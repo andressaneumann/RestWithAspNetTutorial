@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
+﻿using System.Collections.Generic;
 using RestWithAspNetTutorial.Model;
-using RestWithAspNetTutorial.Model.Context;
-using RestWithAspNetTutorial.Repository;
+using RestWithAspNetTutorial.Repository.Generic;
 
 namespace RestWithAspNetTutorial.Business.Implementations
 {
     public class PersonBusiness : IPersonBusiness
     {
-        private IPersonRepository _repository;
+        private IRepository<Person> _repository;
 
-        public PersonBusiness(IPersonRepository repository)
+        public PersonBusiness(IRepository<Person> repository)
         {
             _repository = repository;
         }
@@ -22,7 +18,7 @@ namespace RestWithAspNetTutorial.Business.Implementations
             return _repository.Create(person);
         }
 
-        public void Delete(long id)
+        public void Delete(int id)
         {
             _repository.Delete(id);
         }
@@ -32,7 +28,7 @@ namespace RestWithAspNetTutorial.Business.Implementations
             return _repository.FindAll();
         }
 
-        public Person FindById(long id)
+        public Person FindById(int id)
         {
             return _repository.FindById(id);
         }
