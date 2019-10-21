@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using RestWithAspNetTutorial.Data.Converters;
+using RestWithAspNetTutorial.Data.VO;
 using RestWithAspNetTutorial.Model;
 using RestWithAspNetTutorial.Repository.Generic;
 
@@ -7,15 +9,20 @@ namespace RestWithAspNetTutorial.Business.Implementations
     public class PersonBusiness : IPersonBusiness
     {
         private IRepository<Person> _repository;
+        private readonly PersonConverter _converter;
 
         public PersonBusiness(IRepository<Person> repository)
         {
             _repository = repository;
+            _converter = new PersonConverter();
         }
 
-        public Person Create(Person person)
-        {           
-            return _repository.Create(person);
+        public PersonVO Create(PersonVO person)
+        {
+            var personEntity = _converter.Parse(person);
+            personEntity = _repository.Create(personEntity);
+
+            return _converter.Parse(personEntity);
         }
 
         public void Delete(int id)
@@ -23,19 +30,22 @@ namespace RestWithAspNetTutorial.Business.Implementations
             _repository.Delete(id);
         }
 
-        public List<Person> FindAll()
+        public List<PersonVO> FindAll()
         {
-            return _repository.FindAll();
+            return _converter.ParseList(_repository.FindAll());
         }
 
-        public Person FindById(int id)
+        public PersonVO FindById(int id)
         {
-            return _repository.FindById(id);
+            return _converter.Parse(_repository.FindById(id));
         }
 
-        public Person Update(Person person)
+        public PersonVO Update(PersonVO person)
         {
-            return _repository.Update(person);
+            var personEntity = _converter.Parse(person);
+            personEntity = _repository.Update(personEntity);
+
+            return _converter.Parse(personEntity);
         }
        
     }

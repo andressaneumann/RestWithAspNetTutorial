@@ -2,6 +2,8 @@
 using RestWithAspNetTutorial.Model;
 using RestWithAspNetTutorial.Business.Implementations;
 using RestWithAspNetTutorial.Business;
+using RestWithAspNetTutorial.Data.VO;
+using Tapioca.HATEOAS;
 
 namespace RestWithAspNetTutorial.Controllers
 {
@@ -18,6 +20,7 @@ namespace RestWithAspNetTutorial.Controllers
 
         // GET api/values
         [HttpGet]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get()
         {
             return Ok(_personBusiness.FindAll());
@@ -25,6 +28,7 @@ namespace RestWithAspNetTutorial.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Get(int id)
         {
             var person = _personBusiness.FindById(id);
@@ -36,7 +40,8 @@ namespace RestWithAspNetTutorial.Controllers
 
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody] Person person)
+        [TypeFilter(typeof(HyperMediaFilter))]
+        public IActionResult Post([FromBody] PersonVO person)
         {
             if (person == null) return BadRequest();
 
@@ -45,7 +50,8 @@ namespace RestWithAspNetTutorial.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult Put([FromBody] Person person)
+        [TypeFilter(typeof(HyperMediaFilter))]
+        public IActionResult Put([FromBody] PersonVO person)
         {
             if (person == null) return BadRequest();
             
@@ -57,6 +63,7 @@ namespace RestWithAspNetTutorial.Controllers
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
+        [TypeFilter(typeof(HyperMediaFilter))]
         public IActionResult Delete(int id)
         {
             _personBusiness.Delete(id);

@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using RestWithAspNetTutorial.Model.Context;
 using RestWithAspNetTutorial.Business.Implementations;
 using RestWithAspNetTutorial.Business;
 using RestWithAspNetTutorial.Repository;
 using RestWithAspNetTutorial.Repository.Implementations;
-using Pomelo.EntityFrameworkCore.MySql;
 using RestWithAspNetTutorial.Repository.Generic;
+using Microsoft.Net.Http.Headers;
+using Tapioca.HATEOAS;
+using RestWithAspNetTutorial.Hypermedia;
+using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace RestWithAspNetTutorial
 {
@@ -60,9 +60,27 @@ namespace RestWithAspNetTutorial
                 }
             }
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc(options => 
+            {
+                options.RespectBrowserAcceptHeader = true;
+                options.FormatterMappings.SetMediaTypeMappingForFormat("xml", MediaTypeHeaderValue.Parse("text/xml"));
+                options.FormatterMappings.SetMediaTypeMappingForFormat("json", MediaTypeHeaderValue.Parse("application/json"));                
+            }).AddXmlSerializerFormatters().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            var filterOptions = new HyperMediaFilterOptions();
+            filterOptions.ObjectContentResponseEnricherList.Add(new PersonEnricher());
+            services.AddSingleton(filterOptions);
 
             services.AddApiVersioning();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info {
+                    
+                    Title = "Restful API With Asp.Net Core 2.0",
+                    Version = "v1",
+                    
+                });
+            });
 
             //Dependency Injection
             services.AddScoped<IPersonBusiness, PersonBusiness>();
@@ -85,8 +103,24 @@ namespace RestWithAspNetTutorial
                 app.UseHsts();
             }
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c => 
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json","My API V1");
+            });
+
+            var option = new RewriteOptions();
+            option.AddRedirect("^$", "swagger");
+            app.UseRewriter(option);
+
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseMvc(routes => 
+            {
+                routes.MapRoute(
+                        name: "DefaultApi",
+                        template: "{controller=Values}/{id?}"
+                    );
+            });
         }
     }
 }
